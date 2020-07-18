@@ -2,6 +2,8 @@
   complete the middleware code to check if the user is logged in
   before granting access to the next middleware/route handler
 */
+const jwt = require("jsonwebtoken");
+const secrets = require("../api/secrets");
 
 module.exports = (req, res, next) => {
   // tokens are normally sent as the Authorisation header
