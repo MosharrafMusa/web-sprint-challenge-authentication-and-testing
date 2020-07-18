@@ -15,6 +15,22 @@ describe("API", () => {
         .then((res) => expect(res.status).toBe(201));
     });
 
+    it("should receive 404 if a user does not input password", () => {
+      return request(server)
+        .post("/api/auth/register")
+        .send({ username: "mosharraf" })
+        .then((res) => expect(res.status).toBe(404));
+    });
+
+    it("should return username", function () {
+      return request(server)
+        .post("/api/auth/register")
+        .send({ username: "mosharraf", password: "123pass" })
+        .then((res) => {
+          expect(res.body.username).toEqual("mosharraf");
+        });
+    });
+
     it("Should return correct content type", () => {
       return request(server)
         .post("/api/auth/register")
